@@ -148,11 +148,45 @@ still captures a graph (39 GiB peak). If a capture does not fit (for example 100
 only the graph's few-percent speedup is lost. On GPUs shared with other processes, leave
 headroom: 1024 at 100 frames needs nearly all of an 80 GB card.
 
+## Experimental binary dedup (CPU)
+
+Before inference integration, the dedup helper was converted from dense float64
+overlap matrices to packed binary masks and native population counts. The table
+below measures that helper on synthetic moving rectangles with 25% duplicate
+masks; it does not measure model accuracy or GPU end-to-end inference.
+
+| Queries × frames | Float64 (ms) | Packed (ms) | Speedup | Float64 / packed peak RSS (MiB) |
+|---|---:|---:|---:|---:|
+| 64 × 1 | 8.188 | 0.285 | 28.74× | 58.2 / 37.0 |
+| 128 × 1 | 25.778 | 0.536 | 48.11× | 80.8 / 38.0 |
+| 32 × 8 | 29.591 | 1.163 | 25.44× | 129.9 / 44.3 |
+| 400 × 1 | 163.091 | 2.814 | 57.96× | 185.1 / 45.9 |
+| 64 × 8 | 69.004 | 1.757 | 39.27× | 222.0 / 50.8 |
+| 400 × 100 | not run | 318.445 | — | not measured / 1048.4 |
+
+Measured on an AMD EPYC 9J14 CPU with one BLAS thread, Python 3.11.7 and NumPy
+1.26.4. Every mask is 112×200; integer weights represent nearest expansion to
+450×800. Threshold: IoU > 0.7. Times include packing, weight preparation and
+suppression from ready Boolean masks; they exclude model inference, mask
+thresholding, device transfers and initial compilation. Paired rows report the
+median of five calls; the 400×100 stress row is one call. RSS is the isolated
+whole-process peak, including resident input arrays and warmup.
+
+All five paired cases exactly match the reference keep decisions, suppressor
+indices and IoUs. The large stress case was run only with the packed helper, so
+it has no full-size reference comparison. Its two dense float64 mask arrays would
+require 14.336 GB; packed mask storage is 112 MB. Those are array-size estimates,
+separate from measured process RSS.
+
+The standalone [experiment and GBStation runner](../scripts/experiments/packed_dedup/README.md)
+are available for validation. The inference defaults above are unchanged. Paired accuracy and warm GPU latency on the released
+checkpoint are still pending. [Raw measurements](benchmarks/packed-dedup-cpu-20261116.json).
+
 ## Notes
 
 - `--fast full` merges the LoRA adapters into the backbone weights in memory at load time; the
   checkpoint on disk is unchanged.
-- Results above use PyTorch 2.9. `fast_inference.py` also supports the pinned PyTorch 2.5.0,
+- GPU results above use PyTorch 2.9. `fast_inference.py` also supports the pinned PyTorch 2.5.0,
   but timings there have not been measured.
 - The GB300 was shared with other resident processes during the measurements; expect some
   run-to-run variation.
