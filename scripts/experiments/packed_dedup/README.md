@@ -42,6 +42,10 @@ from another architecture do not establish its performance.
 
 ## GBStation setup
 
+The wrapper checks `http://10.88.7.155:7860/healthz` by default; set
+`DEMO_HEALTH_URL` to override the host-side check. The container runner uses the
+workstation address for its between-clip checks.
+
 Run these commands on GBStation using the existing benchmark installation. The
 wrapper expects Docker image `s4vy-benchmark:20261031`, passwordless Docker access,
 and these existing assets under `$HOME/projects/s4vy-demo`:
@@ -103,3 +107,58 @@ It excludes input loading and output writing, so it is not complete video
 latency. The summary averages per-clip repetition medians. Cold graph/compile
 costs are recorded separately from warm repetitions. The bounded real-tensor parity
 check establishes helper agreement on a subset, not full-size W8 decoder parity.
+
+## GBStation CPU results (2026-11-16)
+
+Seven unit tests passed in the existing benchmark container (Python 3.12.3,
+NumPy 2.1.0, ARM64). Five timed calls per paired case, including packing and
+excluding initial compilation; exact keep/keeper/IoU parity passed in each case.
+
+| Case | Dense float64 (ms) | Packed (ms) | Speedup | Dense peak RSS (MiB) | Packed peak RSS (MiB) |
+|---|---:|---:|---:|---:|---:|
+| frame64 | 10.032 | 0.711 | 14.11x | 55.8 | 36.1 |
+| frame128 | 28.901 | 1.084 | 26.66x | 79.6 | 37.3 |
+| tube32x8 | 26.377 | 3.115 | 8.47x | 127.8 | 44.1 |
+| frame400 | 237.267 | 3.927 | 60.42x | 183.2 | 44.4 |
+| tube64x8 | 76.584 | 3.973 | 19.28x | 220.7 | 49.6 |
+| tube400x100 (packed only, one call) | not run | 355.920 | n/a | not measured | 1048.3 |
+
+Synthetic moving rectangles with 25% exact duplicates; these timings measure
+only the CPU helper. RSS is isolated whole-process peak, including inputs and
+scratch. The stress case has no dense comparison or full-size parity claim.
+Raw JSON, Markdown, checkpoint hash, image ID and source hashes are retained in
+[`results/`](results/), prefixed `gbstation-20261116-`. Full logs are under
+`analysis/packed-dedup-cpu-20261116` in the GBStation demo project.
+
+## Full paired GBStation results (2026-11-16–17 UTC)
+
+| Cohort | Metric | Scored / selected clips | Owned, dedup off | Owned + tube 0.7 | Delta (pp) |
+|---|---|---:|---:|---:|---:|
+| ScanNet (IGGT) | J&F | 10 / 10 | 79.776 | 79.776 | +0.000 |
+| DAVIS 2017 | J&F | 30 / 30 | 84.001 | 83.861 | -0.139 |
+| DAVIS 2017 | IoU4D | 30 / 30 | 79.141 | 78.886 | -0.254 |
+| LVOS | J&F | 50 / 50 | 67.880 | 67.873 | -0.007 |
+| LVOS | IoU4D | 50 / 50 | 63.152 | 63.171 | +0.019 |
+| VIPSeg | STQ | 343 / 343 | 82.419 | 82.446 | +0.027 |
+| VIPSeg | mAP | 343 / 343 | 44.749 | 44.755 | +0.006 |
+
+Warm forward + decode, milliseconds per clip (mean of per-clip medians of three repeats):
+
+| Cohort | Warm clips | Dedup off (ms) | Tube 0.7 (ms) | Tube/off |
+|---|---:|---:|---:|---:|
+| ScanNet (IGGT) | 10 | 120.927 | 123.602 | 1.022 |
+| DAVIS 2017 | 30 | 1897.794 | 1915.178 | 1.009 |
+| LVOS | 50 | 3228.816 | 3264.525 | 1.011 |
+| VIPSeg | 343 | 477.340 | 480.950 | 1.008 |
+
+Measured 2026-11-16–17 UTC on one NVIDIA GB300: 433 clips / 15,327 frames, public checkpoint, native input, full acceleration.
+Accuracy is reported in percent; deltas are percentage points. VIPSeg mAP is pooled.
+Timing includes dedup preparation, GPU-to-CPU transfer, packing, suppression and ownership; it excludes input loading, output writing, initial compilation and graph capture.
+These timing scopes differ from the end-to-end speed table. Confidence intervals were not computed.
+CPU scoring ran concurrently with six workers; the GPU also retained the idle demo and another resident service. Timings reflect this shared workstation.
+Helper parity passed seven unit tests, five paired synthetic benchmark cases and a bounded real-tensor subset; this does not establish full-size W8 framewise decoder parity.
+
+Raw paired metrics, timing, runtime, scorer parity and count/hash audit are in
+[`results/`](results/), prefixed `gbstation-20261116-full-`. The full selection,
+predictions, per-clip receipts and logs are retained in
+`analysis/packed-dedup-full-20261116` in the GBStation demo project.

@@ -1,0 +1,38 @@
+{
+  "recorded_at": "2026-11-16T23:49:47.290855+00:00",
+  "host": "pmgb300ws-0144",
+  "source_commit": "8690fa55910c08142033e873f051fa942a192999",
+  "source_sha256": {
+    "scripts/experiments/packed_dedup/README.md": "8ba0465e92ada9bead0602600935aa30b37831444ab4428ecfe21f904ce46c18",
+    "scripts/experiments/packed_dedup/benchmark_packed_dedup.py": "0b3f28cb98698e0dff32e39e049fea01656c2324ee2330074c8458a0d230fd27",
+    "scripts/experiments/packed_dedup/eval_packed_owned.py": "6577103768ea6c3db8c545c390c563bc3721c495c776c031d29b66abbaa76427",
+    "scripts/experiments/packed_dedup/packed_dedup.cpp": "b7b4c1aad099c9f758650cb8d9e094aa0da507d4418010d92d77e9652e6b9b83",
+    "scripts/experiments/packed_dedup/packed_dedup.py": "aef6c3d7be639c9731d7ab762e730625800d3525b2e7b312428ef924fe3cc60e",
+    "scripts/experiments/packed_dedup/reference_dedup.py": "941d9985be0fbca08e70b5717cf7f251fc863801b79505f93437f66282b3af3f",
+    "scripts/experiments/packed_dedup/run_eval_packed_owned.sh": "b12ace9ca14fb3a8b8a72fe2a459e41dece30cc3ac4639b346f64826b45cb0ab",
+    "scripts/experiments/packed_dedup/test_packed_dedup.py": "a2d4ddf16834e29b263f0e984e671bd9f4b6aa53984c2fea8e8aae1723ab8640"
+  },
+  "checkpoint_sha256": "8eea257bab8e6183a979a8b424490683f21e1752a3499345cd991b27e3050db7",
+  "input_manifest_sha256": "b7f7f38736365479446ddad2b235de3af3ab23a753ced809665b14868492e760",
+  "image_id": "sha256:afe08715dd126dbe8c5a0e34ea727dae242aaaa59ab5406716bb5183e4737bd2",
+  "inference_started_utc": "2026-11-16T23:51:56.857021+00:00",
+  "inference_completed_utc": "2026-11-17T00:29:26.599831+00:00",
+  "scoring_completed_utc": "2026-11-17T00:29:35.403160+00:00",
+  "concurrent_cpu_scoring_workers": 6,
+  "operational_patch": "host health URL changed from loopback to workstation address; model and helper code unchanged",
+  "experiment_sha256": {
+    "scripts/experiments/packed_dedup/benchmark_packed_dedup.py": "0b3f28cb98698e0dff32e39e049fea01656c2324ee2330074c8458a0d230fd27",
+    "scripts/experiments/packed_dedup/eval_packed_owned.py": "6577103768ea6c3db8c545c390c563bc3721c495c776c031d29b66abbaa76427",
+    "scripts/experiments/packed_dedup/packed_dedup.cpp": "b7b4c1aad099c9f758650cb8d9e094aa0da507d4418010d92d77e9652e6b9b83",
+    "scripts/experiments/packed_dedup/packed_dedup.py": "aef6c3d7be639c9731d7ab762e730625800d3525b2e7b312428ef924fe3cc60e",
+    "scripts/experiments/packed_dedup/reference_dedup.py": "941d9985be0fbca08e70b5717cf7f251fc863801b79505f93437f66282b3af3f",
+    "scripts/experiments/packed_dedup/run_eval_packed_owned.sh": "b12ace9ca14fb3a8b8a72fe2a459e41dece30cc3ac4639b346f64826b45cb0ab",
+    "scripts/experiments/packed_dedup/test_packed_dedup.py": "a2d4ddf16834e29b263f0e984e671bd9f4b6aa53984c2fea8e8aae1723ab8640"
+  },
+  "scoring_support_sha256": {
+    "score_ready.py": "2a890fdb69007ba2ae4916ec06576866231abd900a27ada7bd10cf7ca7badd7c",
+    "finalize_results.py": "875c43f508a046035e221d2c20dc3afb49068b44e31792cca686a3feb34e1d9a",
+    "finalize_when_ready.sh": "5d76571d45f2f199d5f65992c7edc6be8dc7967acccf13d7fd30bdd2c890f52b"
+  },
+  "original_scorer_sha256": "577d77211dfd64b5120408badd39c1cfaf774c0cd55e53e0690f1643ab37af19"
+}

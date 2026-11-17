@@ -16,7 +16,7 @@ for arg in "$@"; do
 done
 if ((${#gpu[@]})); then
   # Fail if the service cannot confirm no active users.
-  curl --fail --silent --max-time 15 http://127.0.0.1:7860/healthz |
+  curl --fail --silent --max-time 15 "${DEMO_HEALTH_URL:-http://10.88.7.155:7860/healthz}" |
     python3 -c 'import json,sys; h=json.load(sys.stdin); assert h["active_streams"] == h["batch_jobs"] == 0, "Demo is busy"'
 fi
 sudo -n docker run --rm "${gpu[@]}" --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 \

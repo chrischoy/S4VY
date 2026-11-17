@@ -1,0 +1,304 @@
+{
+  "schema": "s4vy_packed_dedup_cpu_benchmark_v1",
+  "input_kind": "synthetic moving rectangles; 25% exact duplicate masks",
+  "environment": {
+    "python": "3.12.3",
+    "numpy": "2.1.0",
+    "platform": "Linux-7.0.0-15-generic-aarch64-with-glibc2.39",
+    "cpu": "aarch64",
+    "hostname": "2f2ff427cc62",
+    "blas_threads": 1
+  },
+  "timing": "CPU dedup only; input Boolean arrays and weights ready; packing included each call; warmup excluded",
+  "memory": "Measured peak RSS is isolated whole-process high-water RSS. Array byte counts are estimates, not measured peaks. Single bitplane excludes weight partitions and scratch.",
+  "threshold": 0.7,
+  "seed": 7301,
+  "repeats": 5,
+  "rows": [
+    {
+      "case": "frame64",
+      "shape": [
+        64,
+        1,
+        112,
+        200
+      ],
+      "native_shape": [
+        1,
+        450,
+        800
+      ],
+      "exact_keep_keeper_iou": true,
+      "reference_float64_two_mask_arrays_bytes": 22937600,
+      "reference_three_pairwise_arrays_bytes": 98304,
+      "single_bitplane_storage_bytes": 179200,
+      "speedup": 14.105006025064661,
+      "reference": {
+        "method": "reference",
+        "warmup_seconds": 0.012183725833892822,
+        "seconds": [
+          0.010387298883870244,
+          0.009866687934845686,
+          0.009822143008932471,
+          0.010419745929539204,
+          0.01003200002014637
+        ],
+        "median_seconds": 0.01003200002014637,
+        "peak_process_rss_bytes": 58527744,
+        "input_mask_bytes": 1433600,
+        "weights_bytes": 179200,
+        "unique_weights": [
+          16,
+          20
+        ]
+      },
+      "packed": {
+        "method": "packed",
+        "warmup_seconds": 0.003503351006656885,
+        "seconds": [
+          0.0007989490404725075,
+          0.0007331250235438347,
+          0.000687203835695982,
+          0.0007000679615885019,
+          0.0007112368475645781
+        ],
+        "median_seconds": 0.0007112368475645781,
+        "peak_process_rss_bytes": 37806080,
+        "input_mask_bytes": 1433600,
+        "weights_bytes": 179200,
+        "unique_weights": [
+          16,
+          20
+        ]
+      }
+    },
+    {
+      "case": "frame128",
+      "shape": [
+        128,
+        1,
+        112,
+        200
+      ],
+      "native_shape": [
+        1,
+        450,
+        800
+      ],
+      "exact_keep_keeper_iou": true,
+      "reference_float64_two_mask_arrays_bytes": 45875200,
+      "reference_three_pairwise_arrays_bytes": 393216,
+      "single_bitplane_storage_bytes": 358400,
+      "speedup": 26.658603200129892,
+      "reference": {
+        "method": "reference",
+        "warmup_seconds": 0.03274885006248951,
+        "seconds": [
+          0.02979577612131834,
+          0.02903695497661829,
+          0.028900665929540992,
+          0.02875948091968894,
+          0.02877436112612486
+        ],
+        "median_seconds": 0.028900665929540992,
+        "peak_process_rss_bytes": 83476480,
+        "input_mask_bytes": 2867200,
+        "weights_bytes": 179200,
+        "unique_weights": [
+          16,
+          20
+        ]
+      },
+      "packed": {
+        "method": "packed",
+        "warmup_seconds": 0.004675294971093535,
+        "seconds": [
+          0.0011134790256619453,
+          0.0010931268334388733,
+          0.0010658630635589361,
+          0.0010841027833521366,
+          0.0010566788259893656
+        ],
+        "median_seconds": 0.0010841027833521366,
+        "peak_process_rss_bytes": 39137280,
+        "input_mask_bytes": 2867200,
+        "weights_bytes": 179200,
+        "unique_weights": [
+          16,
+          20
+        ]
+      }
+    },
+    {
+      "case": "tube32x8",
+      "shape": [
+        32,
+        8,
+        112,
+        200
+      ],
+      "native_shape": [
+        8,
+        450,
+        800
+      ],
+      "exact_keep_keeper_iou": true,
+      "reference_float64_two_mask_arrays_bytes": 91750400,
+      "reference_three_pairwise_arrays_bytes": 24576,
+      "single_bitplane_storage_bytes": 716800,
+      "speedup": 8.466320680117365,
+      "reference": {
+        "method": "reference",
+        "warmup_seconds": 0.029802624136209488,
+        "seconds": [
+          0.026376617839559913,
+          0.02716043102554977,
+          0.026344584999606013,
+          0.026884332997724414,
+          0.02552723605185747
+        ],
+        "median_seconds": 0.026376617839559913,
+        "peak_process_rss_bytes": 134045696,
+        "input_mask_bytes": 5734400,
+        "weights_bytes": 1433600,
+        "unique_weights": [
+          16,
+          20
+        ]
+      },
+      "packed": {
+        "method": "packed",
+        "warmup_seconds": 0.007670897990465164,
+        "seconds": [
+          0.003313204972073436,
+          0.0031435079872608185,
+          0.003096755128353834,
+          0.0031154758762568235,
+          0.0029674749821424484
+        ],
+        "median_seconds": 0.0031154758762568235,
+        "peak_process_rss_bytes": 46211072,
+        "input_mask_bytes": 5734400,
+        "weights_bytes": 1433600,
+        "unique_weights": [
+          16,
+          20
+        ]
+      }
+    },
+    {
+      "case": "frame400",
+      "shape": [
+        400,
+        1,
+        112,
+        200
+      ],
+      "native_shape": [
+        1,
+        450,
+        800
+      ],
+      "exact_keep_keeper_iou": true,
+      "reference_float64_two_mask_arrays_bytes": 143360000,
+      "reference_three_pairwise_arrays_bytes": 3840000,
+      "single_bitplane_storage_bytes": 1120000,
+      "speedup": 60.420429933097616,
+      "reference": {
+        "method": "reference",
+        "warmup_seconds": 0.2395325161051005,
+        "seconds": [
+          0.23902201792225242,
+          0.23719083797186613,
+          0.23726722202263772,
+          0.23750504688359797,
+          0.23633095994591713
+        ],
+        "median_seconds": 0.23726722202263772,
+        "peak_process_rss_bytes": 192081920,
+        "input_mask_bytes": 8960000,
+        "weights_bytes": 179200,
+        "unique_weights": [
+          16,
+          20
+        ]
+      },
+      "packed": {
+        "method": "packed",
+        "warmup_seconds": 0.01827768492512405,
+        "seconds": [
+          0.004248507786542177,
+          0.003926937002688646,
+          0.0039276741445064545,
+          0.003918041009455919,
+          0.0038643451407551765
+        ],
+        "median_seconds": 0.003926937002688646,
+        "peak_process_rss_bytes": 46505984,
+        "input_mask_bytes": 8960000,
+        "weights_bytes": 179200,
+        "unique_weights": [
+          16,
+          20
+        ]
+      }
+    },
+    {
+      "case": "tube64x8",
+      "shape": [
+        64,
+        8,
+        112,
+        200
+      ],
+      "native_shape": [
+        8,
+        450,
+        800
+      ],
+      "exact_keep_keeper_iou": true,
+      "reference_float64_two_mask_arrays_bytes": 183500800,
+      "reference_three_pairwise_arrays_bytes": 98304,
+      "single_bitplane_storage_bytes": 1433600,
+      "speedup": 19.276379275000313,
+      "reference": {
+        "method": "reference",
+        "warmup_seconds": 0.08049027784727514,
+        "seconds": [
+          0.07650567591190338,
+          0.0773282740265131,
+          0.0763704429846257,
+          0.07658353308215737,
+          0.07688142312690616
+        ],
+        "median_seconds": 0.07658353308215737,
+        "peak_process_rss_bytes": 231469056,
+        "input_mask_bytes": 11468800,
+        "weights_bytes": 1433600,
+        "unique_weights": [
+          16,
+          20
+        ]
+      },
+      "packed": {
+        "method": "packed",
+        "warmup_seconds": 0.08222001697868109,
+        "seconds": [
+          0.004184731049463153,
+          0.0038741689641028643,
+          0.00393961020745337,
+          0.003972921054810286,
+          0.003995864884927869
+        ],
+        "median_seconds": 0.003972921054810286,
+        "peak_process_rss_bytes": 52015104,
+        "input_mask_bytes": 11468800,
+        "weights_bytes": 1433600,
+        "unique_weights": [
+          16,
+          20
+        ]
+      }
+    }
+  ]
+}

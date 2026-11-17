@@ -1,0 +1,53 @@
+{
+  "schema": "s4vy_packed_dedup_cpu_benchmark_v1",
+  "input_kind": "synthetic moving rectangles; 25% exact duplicate masks",
+  "environment": {
+    "python": "3.12.3",
+    "numpy": "2.1.0",
+    "platform": "Linux-7.0.0-15-generic-aarch64-with-glibc2.39",
+    "cpu": "aarch64",
+    "hostname": "2f2ff427cc62",
+    "blas_threads": 1
+  },
+  "timing": "CPU dedup only; input Boolean arrays and weights ready; packing included each call; warmup excluded",
+  "memory": "Measured peak RSS is isolated whole-process high-water RSS. Array byte counts are estimates, not measured peaks. Single bitplane excludes weight partitions and scratch.",
+  "threshold": 0.7,
+  "seed": 7301,
+  "repeats": 1,
+  "rows": [
+    {
+      "case": "tube400x100",
+      "shape": [
+        400,
+        100,
+        112,
+        200
+      ],
+      "native_shape": [
+        100,
+        450,
+        800
+      ],
+      "exact_keep_keeper_iou": null,
+      "reference_float64_two_mask_arrays_bytes": 14336000000,
+      "reference_three_pairwise_arrays_bytes": 3840000,
+      "single_bitplane_storage_bytes": 112000000,
+      "speedup": null,
+      "packed": {
+        "method": "packed",
+        "warmup_seconds": 0.3631047348026186,
+        "seconds": [
+          0.3559199860319495
+        ],
+        "median_seconds": 0.3559199860319495,
+        "peak_process_rss_bytes": 1099231232,
+        "input_mask_bytes": 896000000,
+        "weights_bytes": 17920000,
+        "unique_weights": [
+          16,
+          20
+        ]
+      }
+    }
+  ]
+}

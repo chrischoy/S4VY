@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "selected": 433,
+  "frames": 15327,
+  "selected_by_benchmark": {
+    "vipseg": 343,
+    "iggt_scannet": 10,
+    "davis": 30,
+    "lvos": 50
+  },
+  "frames_by_benchmark": {
+    "vipseg": 8255,
+    "iggt_scannet": 77,
+    "davis": 1995,
+    "lvos": 5000
+  },
+  "suppressed_queries": {
+    "vipseg": 410,
+    "iggt_scannet": 11,
+    "davis": 108,
+    "lvos": 289
+  },
+  "clips_with_suppression": {
+    "vipseg": 161,
+    "iggt_scannet": 8,
+    "davis": 21,
+    "lvos": 44
+  },
+  "prediction_hashes_verified": 866,
+  "warm_repetitions_verified": 1299,
+  "scoreability_paired": true,
+  "geometry_receipts_verified": 80
+}

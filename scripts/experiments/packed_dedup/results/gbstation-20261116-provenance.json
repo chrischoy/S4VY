@@ -1,0 +1,18 @@
+{
+  "recorded_at": "2026-11-16T23:49:47.290855+00:00",
+  "host": "pmgb300ws-0144",
+  "source_commit": "8690fa55910c08142033e873f051fa942a192999",
+  "source_sha256": {
+    "scripts/experiments/packed_dedup/README.md": "8ba0465e92ada9bead0602600935aa30b37831444ab4428ecfe21f904ce46c18",
+    "scripts/experiments/packed_dedup/benchmark_packed_dedup.py": "0b3f28cb98698e0dff32e39e049fea01656c2324ee2330074c8458a0d230fd27",
+    "scripts/experiments/packed_dedup/eval_packed_owned.py": "6577103768ea6c3db8c545c390c563bc3721c495c776c031d29b66abbaa76427",
+    "scripts/experiments/packed_dedup/packed_dedup.cpp": "b7b4c1aad099c9f758650cb8d9e094aa0da507d4418010d92d77e9652e6b9b83",
+    "scripts/experiments/packed_dedup/packed_dedup.py": "aef6c3d7be639c9731d7ab762e730625800d3525b2e7b312428ef924fe3cc60e",
+    "scripts/experiments/packed_dedup/reference_dedup.py": "941d9985be0fbca08e70b5717cf7f251fc863801b79505f93437f66282b3af3f",
+    "scripts/experiments/packed_dedup/run_eval_packed_owned.sh": "b12ace9ca14fb3a8b8a72fe2a459e41dece30cc3ac4639b346f64826b45cb0ab",
+    "scripts/experiments/packed_dedup/test_packed_dedup.py": "a2d4ddf16834e29b263f0e984e671bd9f4b6aa53984c2fea8e8aae1723ab8640"
+  },
+  "checkpoint_sha256": "8eea257bab8e6183a979a8b424490683f21e1752a3499345cd991b27e3050db7",
+  "input_manifest_sha256": "b7f7f38736365479446ddad2b235de3af3ab23a753ced809665b14868492e760",
+  "image_id": "sha256:afe08715dd126dbe8c5a0e34ea727dae242aaaa59ab5406716bb5183e4737bd2"
+}
